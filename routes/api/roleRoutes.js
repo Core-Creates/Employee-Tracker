@@ -2,7 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../../connection');
 const { Department, Role, Employee } = require('../../models');
 
-// GET all readers
+/**  Gets all roles **************************************************************/
 router.get('/', async (req, res) => {
     try {
         const roleData = await Role.findAll({
@@ -14,7 +14,10 @@ router.get('/', async (req, res) => {
     }
 });
 
-// GET a single reader
+
+
+
+/**  Gets a role under a single ID *********************************************/
 router.get('/:id', async (req, res) => {
     try {
         const roleData = await Role.findByPk(req.params.id, {
@@ -32,7 +35,10 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// CREATE a reader
+
+
+
+/**  CREATES a role ************************************************************/
 router.post('/', async (req, res) => {
     try {
         const roleData = await Role.create(req.body);
@@ -42,17 +48,21 @@ router.post('/', async (req, res) => {
     }
 });
 
-// DELETE a reader
+
+
+
+/** DELETES a role **************************************************************/
 router.delete('/:id', async (req, res) => {
     try {
-        const employeeData = await role.destroy({
+        const roleData = await role.destroy({
             where: {
                 id: req.params.id,
             },
+            res.status(200).json({ message:'Successfully Destroyed the record!'});
         });
 
         if (!roleData) {
-            res.status(404).json({ message: 'No reader found with that id!' });
+            res.status(404).json({ message: 'No role found with that id!' });
             return;
         }
 
