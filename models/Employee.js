@@ -27,11 +27,20 @@ Employee.init(
                 isEmail: true,
             },
         },
-        role: {
+        role_id: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                len: [1],
+            references: {
+                model: 'role',
+                key: 'id',
+            },
+        },
+        department_id: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: 'department',
+                key: 'id',
             },
         },
     },
@@ -39,7 +48,7 @@ Employee.init(
         hooks: {
             beforeCreate: async (newEmployee) => {
                 try {
-                    
+
                     return newEmployee;
                 } catch (err) {
                     console.log(err);
@@ -48,7 +57,7 @@ Employee.init(
             },
             beforeUpdate: async (updatedEmployee) => {
                 try {
-                    
+
                     return updatedEmployee;
                 } catch (err) {
                     console.log(err);
@@ -60,7 +69,7 @@ Employee.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'reader',
+        modelName: 'employee',
     }
 );
 
