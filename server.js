@@ -19,10 +19,29 @@ app.use(routes);
 
 
 /** turn on connection to db and server. ************************************************/
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
 
     //makes it listen on port and lets you know it started successfully
     app.listen(PORT, () => console.log('Now listening'));
 
+});
+
+
+let prompt = inquirer.createPromptModule();
+
+prompt('Do you want to add an employee?').then(answer => {
+    if (!answer) {
+        // return 'Good Day to you';
+    }
+
+
+}).catch(error => {
+    if (error.isTtyError) {
+        // Prompt issues
+        return err;
+    } else {
+        // Something else went wrong
+        return err;
+    }
 });
 
