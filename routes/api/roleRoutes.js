@@ -58,7 +58,7 @@ router.delete('/:id', async (req, res) => {
             where: {
                 id: req.params.id,
             },
-            res.status(200).json({ message:'Successfully Destroyed the record!'});
+            // res.status(200).json({ message:'Successfully Destroyed the record!'});
         });
 
         if (!roleData) {
